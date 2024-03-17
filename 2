@@ -1,0 +1,35 @@
+#include <iostream>
+#include <list>
+#include <algorithm> 
+
+int main() {
+    std::list<int> source = {2, -6, 6, -9, 11, -8}; 
+    std::list<int> positive; 
+    std::list<int> negative; 
+
+ 
+    for (int num : source) {
+        if (num > 0) {
+            positive.push_back(num);
+        } else if (num < 0) {
+            negative.push_back(num);
+        }
+    }
+
+    
+    positive.sort();
+    negative.sort();
+
+   
+    std::cout << "Положительные числа: ";
+    for (int num : positive) {
+        std::cout << num << " ";
+    }
+    std::cout << "Отрицательные числа: ";
+    for (int num : negative) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
