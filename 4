@@ -1,0 +1,43 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+bool isMatch(char open, char close) {
+    return (open == '(' && close == ')') ||
+           (open == '[' && close == ']') ||
+           (open == '{' && close == '}');
+}
+
+bool isValid(const std::string& sequence) {
+    std::stack<char> stack;
+
+    for (char ch : sequence) {
+        if (ch == '(' || ch == '[' || ch == '{') {
+            stack.push(ch);
+        } else {
+            if (stack.empty()) {
+                return false;
+            }
+            if (!isMatch(stack.top(), ch)) {
+                return false;
+            }
+            stack.pop();
+        }
+    }
+
+    // Если стек пуст, все открывающие скобки нашли свои пары
+    return stack.empty();
+}
+
+int main() {
+    std::string sequence;
+    std::getline(std::cin, sequence); // Считываем входную строку
+
+    if (isValid(sequence)) {
+        std::cout << "Правильная" << std::endl;
+    } else {
+        std::cout << "Неправильная" << std::endl;
+    }
+
+    return 0;
+}
