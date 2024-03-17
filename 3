@@ -1,0 +1,31 @@
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <string>
+
+int main() {
+    std::string text;
+    std::getline(std::cin, text);
+
+    std::map<std::string, int> wordCount;
+
+    std::istringstream textStream(text);
+    std::string word;
+    while (textStream >> word) { 
+        ++wordCount[word]; 
+    }
+
+    int maxCount = 0;
+    std::string mostFrequentWord;
+
+    for (const auto& pair : wordCount) {
+        if (pair.second > maxCount) {
+            mostFrequentWord = pair.first;
+            maxCount = pair.second;
+        }
+    }
+
+    std::cout << mostFrequentWord << std::endl;
+
+    return 0;
+}
